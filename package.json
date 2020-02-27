@@ -18,10 +18,17 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/github": "^7.0.4",
+    "@semantic-release/npm": "^7.0.3",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/listr": "^0.14.2",
     "@types/node": "^13.7.6",
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-oclif": "^3.1",
     "eslint-config-oclif-typescript": "^0.1",
@@ -30,6 +37,7 @@
     "eslint-plugin-unicorn": "^16.1.1",
     "globby": "^11.0.0",
     "prettier": "^1.19.1",
+    "semantic-release": "^17.0.4",
     "ts-node": "^8",
     "typescript": "^3.8.2"
   },
@@ -54,6 +62,11 @@
     "plugins": [
       "@oclif/plugin-help"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "repository": "theBenForce/dynamo-tools",
   "scripts": {
