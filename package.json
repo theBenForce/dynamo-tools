@@ -1,0 +1,67 @@
+{
+  "name": "dynamo-tools",
+  "description": "CLI utilities for dynamodb",
+  "version": "0.0.0",
+  "author": "Ben Force @theBenForce",
+  "bin": {
+    "ddb": "./bin/run"
+  },
+  "bugs": "https://github.com/theBenForce/dynamo-tools/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "aws-sdk": "^2.627.0",
+    "listr": "^0.14.3",
+    "rxjs": "^6.5.4",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/listr": "^0.14.2",
+    "@types/node": "^13.7.6",
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "eslint": "^6.8.0",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-unicorn": "^16.1.1",
+    "globby": "^11.0.0",
+    "prettier": "^1.19.1",
+    "ts-node": "^8",
+    "typescript": "^3.8.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/theBenForce/dynamo-tools",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "ddb",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "theBenForce/dynamo-tools",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
