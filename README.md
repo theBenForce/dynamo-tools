@@ -33,8 +33,29 @@ USAGE
 # Commands
 
 <!-- commands -->
+* [`ddb backup [FILE]`](#ddb-backup-file)
 * [`ddb copy`](#ddb-copy)
 * [`ddb help [COMMAND]`](#ddb-help-command)
+
+## `ddb backup [FILE]`
+
+Backup all entries in a dynamodb table to a file
+
+```
+USAGE
+  $ ddb backup [FILE]
+
+ARGUMENTS
+  FILE  Path to write the backup to.
+
+OPTIONS
+  -h, --help             show CLI help
+  --batchSize=batchSize  [default: 100] The number of items to copy at a time
+  --region=region        (required) AWS region that the DynamoDB is hosted in
+  --source=source        (required) Name of the DynamoDB to copy entries from
+```
+
+_See code: [src/commands/backup.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.0/src/commands/backup.ts)_
 
 ## `ddb copy`
 

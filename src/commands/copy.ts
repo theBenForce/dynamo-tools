@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-spacing */
 import { Command, flags } from "@oclif/command";
 import * as AWS from "aws-sdk";
 import Listr from "listr";
