@@ -3,6 +3,12 @@
   "description": "CLI utilities for dynamodb",
   "version": "0.0.0",
   "author": "Ben Force @theBenForce",
+  "categories": [
+    "DynamoDB",
+    "Utilities",
+    "CLI",
+    "AWS-DynamoDB"
+  ],
   "bin": {
     "ddb": "./bin/run"
   },
