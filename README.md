@@ -9,75 +9,52 @@ CLI tools for dynamodb
 [![License](https://img.shields.io/npm/l/dynamo-tools.svg)](https://github.com/theBenForce/dynamo-tools/blob/master/package.json)
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
-  <!-- tocstop -->
+* [dynamo-tools](#dynamo-tools)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g dynamo-tools
 $ ddb COMMAND
 running command...
 $ ddb (-v|--version|version)
-dynamo-tools/0.0.1 darwin-x64 node-v12.13.1
+dynamo-tools/0.0.0 darwin-x64 node-v12.13.1
 $ ddb --help [COMMAND]
 USAGE
   $ ddb COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`ddb copy`](#ddb-copy)
+* [`ddb help [COMMAND]`](#ddb-help-command)
 
-- [dynamo-tools](#dynamo-tools)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`ddb copy [FILE]`](#ddb-copy-file)
-  - [`ddb hello [FILE]`](#ddb-hello-file)
-  - [`ddb help [COMMAND]`](#ddb-help-command)
+## `ddb copy`
 
-## `ddb copy [FILE]`
-
-describe the command here
+Copy the contents of one dynamodb table to another
 
 ```
 USAGE
-  $ ddb copy [FILE]
+  $ ddb copy
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help                             show CLI help
+  --batchSize=batchSize                  [default: 25] The number of items to copy at a time
+  --destination=destination              (required) Destination table name
+  --destinationRegion=destinationRegion  Region of destination table
+  --region=region                        Region for both source and destination tables
+  --source=source                        (required) Source table name
+  --sourceRegion=sourceRegion            Region of source table
 ```
 
-_See code: [src/commands/copy.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.1/src/commands/copy.ts)_
-
-## `ddb hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ ddb hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ ddb hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.1/src/commands/hello.ts)_
+_See code: [src/commands/copy.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.0/src/commands/copy.ts)_
 
 ## `ddb help [COMMAND]`
 
@@ -95,5 +72,4 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
-
 <!-- commandsstop -->
