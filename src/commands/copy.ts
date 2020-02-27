@@ -55,8 +55,8 @@ export default class Copy extends Command {
     const tasks = new Listr([
       {
         title: `Copying data`,
-        // @ts-ignore
         task: () =>
+          // @ts-ignore
           new Observable(async (observer) => {
             do {
               observer.next(`Getting items from source`);
