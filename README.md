@@ -1,19 +1,23 @@
-dynamo-tools
-============
+# dynamo-tools
 
 CLI tools for dynamodb
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/dynamo-tools.svg)](https://npmjs.org/package/dynamo-tools)
 [![Downloads/week](https://img.shields.io/npm/dw/dynamo-tools.svg)](https://npmjs.org/package/dynamo-tools)
+[![Maintainability](https://api.codeclimate.com/v1/badges/94c18ce4c845c77847bb/maintainability)](https://codeclimate.com/github/theBenForce/dynamo-tools/maintainability)
 [![License](https://img.shields.io/npm/l/dynamo-tools.svg)](https://github.com/theBenForce/dynamo-tools/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g dynamo-tools
 $ ddb COMMAND
@@ -25,12 +29,19 @@ USAGE
   $ ddb COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`ddb copy [FILE]`](#ddb-copy-file)
-* [`ddb hello [FILE]`](#ddb-hello-file)
-* [`ddb help [COMMAND]`](#ddb-help-command)
+
+- [dynamo-tools](#dynamo-tools)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`ddb copy [FILE]`](#ddb-copy-file)
+  - [`ddb hello [FILE]`](#ddb-hello-file)
+  - [`ddb help [COMMAND]`](#ddb-help-command)
 
 ## `ddb copy [FILE]`
 
@@ -84,4 +95,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+
 <!-- commandsstop -->
