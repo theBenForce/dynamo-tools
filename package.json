@@ -19,8 +19,6 @@
     "@oclif/plugin-help": "^2",
     "aws-sdk": "^2.627.0",
     "cli-progress": "^3.6.0",
-    "listr": "^0.14.3",
-    "rxjs": "^6.5.4",
     "tslib": "^1"
   },
   "devDependencies": {

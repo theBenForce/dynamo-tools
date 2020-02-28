@@ -1,7 +1,5 @@
 import { Command, flags } from "@oclif/command";
 import * as AWS from "aws-sdk";
-import Listr from "listr";
-import { Observable } from "rxjs";
 import CliProgress from "cli-progress";
 import * as fs from "fs";
 import * as path from "path";
@@ -50,7 +48,10 @@ export default class Backup extends Command {
 
     const destination = path.resolve(args.file);
     const items: Array<any> = [];
-    const downloadBar = new CliProgress.SingleBar({}, CliProgress.Presets.shades_classic);
+    const downloadBar = new CliProgress.SingleBar(
+      { clearOnComplete: true },
+      CliProgress.Presets.shades_classic
+    );
 
     const tableInfo = await dynamo.describeTable({ TableName: flags.source }).promise();
     const approxTotal = tableInfo.Table?.ItemCount ?? 0;
@@ -80,5 +81,7 @@ export default class Backup extends Command {
       ),
       { encoding: "utf-8" }
     );
+
+    console.info(`Saved ${items.length} items from ${flags.source}`);
   }
 }

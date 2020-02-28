@@ -1,7 +1,6 @@
 import { Command, flags } from "@oclif/command";
 import * as AWS from "aws-sdk";
-import Listr from "listr";
-import { Observable } from "rxjs";
+import CliProgress from "cli-progress";
 
 export default class Copy extends Command {
   static description = "Copy the contents of one dynamodb table to another";
@@ -32,6 +31,11 @@ export default class Copy extends Command {
       this.error(`You must specific both a source and destination region`, { exit: 1 });
     }
 
+    const dynamo = new AWS.DynamoDB({
+      region: flags.sourceRegion,
+      apiVersion: "2012-08-10",
+    });
+
     const sourceDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.sourceRegion,
       apiVersion: "2012-08-10",
@@ -51,34 +55,35 @@ export default class Copy extends Command {
       RequestItems: {},
     } as AWS.DynamoDB.DocumentClient.BatchWriteItemInput;
 
-    const tasks = new Listr([
-      {
-        title: `Copying data`,
-        task: () =>
-          // @ts-ignore
-          new Observable(async (observer) => {
-            do {
-              observer.next(`Getting items from source`);
-              results = await sourceDynamo.scan(scanArgs).promise();
+    const downloadBar = new CliProgress.SingleBar(
+      { clearOnComplete: true },
+      CliProgress.Presets.shades_classic
+    );
 
-              scanArgs.ExclusiveStartKey = results.LastEvaluatedKey;
+    const tableInfo = await dynamo.describeTable({ TableName: flags.source }).promise();
+    const approxTotal = tableInfo.Table?.ItemCount ?? 0;
+    downloadBar.start(approxTotal, 0);
+    let current = 0;
 
-              observer.next(`Writing ${results.Count} items...`);
-              batchWrite.RequestItems[flags.destination] =
-                results?.Items?.map((Item) => ({
-                  PutRequest: {
-                    Item,
-                  },
-                })) ?? [];
+    do {
+      results = await sourceDynamo.scan(scanArgs).promise();
 
-              await destDynamo.batchWrite(batchWrite).promise();
-            } while (results?.LastEvaluatedKey);
+      current += results.Count ?? 0;
+      downloadBar.update(current);
 
-            observer.complete();
-          }),
-      },
-    ]);
+      scanArgs.ExclusiveStartKey = results.LastEvaluatedKey;
 
-    await tasks.run().catch((err: Error) => this.error(err.message));
+      batchWrite.RequestItems[flags.destination] =
+        results?.Items?.map((Item) => ({
+          PutRequest: {
+            Item,
+          },
+        })) ?? [];
+
+      await destDynamo.batchWrite(batchWrite).promise();
+    } while (results?.LastEvaluatedKey);
+
+    downloadBar.stop();
+    console.info(`Copied ${current} items from ${flags.source} to ${flags.destination}`);
   }
 }
