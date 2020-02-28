@@ -3,6 +3,7 @@ import * as AWS from "aws-sdk";
 import CliProgress from "cli-progress";
 import * as fs from "fs";
 import * as path from "path";
+import { DYNAMO_CLIENT_VERSION } from "../constants";
 
 const JSON_INDENT = 2;
 
@@ -33,12 +34,12 @@ export default class Backup extends Command {
 
     const sourceDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.region,
-      apiVersion: "2012-08-10",
+      apiVersion: DYNAMO_CLIENT_VERSION,
     });
 
     const dynamo = new AWS.DynamoDB({
       region: flags.region,
-      apiVersion: "2012-08-10",
+      apiVersion: DYNAMO_CLIENT_VERSION,
     });
     const scanArgs = {
       TableName: flags.source,
@@ -47,7 +48,7 @@ export default class Backup extends Command {
     let results: AWS.DynamoDB.DocumentClient.ScanOutput;
 
     const destination = path.resolve(args.file);
-    const items: Array<any> = [];
+    const items: Array<unknown> = [];
     const downloadBar = new CliProgress.SingleBar(
       { clearOnComplete: true },
       CliProgress.Presets.shades_classic

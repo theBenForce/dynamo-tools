@@ -1,0 +1,1 @@
+export const DYNAMO_CLIENT_VERSION = "2012-08-10";

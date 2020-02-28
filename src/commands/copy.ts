@@ -1,6 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import * as AWS from "aws-sdk";
 import CliProgress from "cli-progress";
+import { DYNAMO_CLIENT_VERSION } from "../constants";
 
 export default class Copy extends Command {
   static description = "Copy the contents of one dynamodb table to another";
@@ -33,16 +34,16 @@ export default class Copy extends Command {
 
     const dynamo = new AWS.DynamoDB({
       region: flags.sourceRegion,
-      apiVersion: "2012-08-10",
+      apiVersion: DYNAMO_CLIENT_VERSION,
     });
 
     const sourceDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.sourceRegion,
-      apiVersion: "2012-08-10",
+      apiVersion: DYNAMO_CLIENT_VERSION,
     });
     const destDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.destinationRegion,
-      apiVersion: "2012-08-10",
+      apiVersion: DYNAMO_CLIENT_VERSION,
     });
 
     const scanArgs = {
