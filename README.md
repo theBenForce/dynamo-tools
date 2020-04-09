@@ -67,13 +67,15 @@ USAGE
   $ ddb copy
 
 OPTIONS
-  -h, --help                             show CLI help
-  --batchSize=batchSize                  [default: 25] The number of items to copy at a time
-  --destination=destination              (required) Destination table name
-  --destinationRegion=destinationRegion  Region of destination table
-  --region=region                        Region for both source and destination tables
-  --source=source                        (required) Source table name
-  --sourceRegion=sourceRegion            Region of source table
+  -h, --help                               show CLI help
+  --batchSize=batchSize                    [default: 25] The number of items to copy at a time
+  --destination=destination                (required) Destination table name
+  --destinationProfile=destinationProfile  AWS Credentials profile to copy to
+  --destinationRegion=destinationRegion    Region of destination table
+  --region=region                          Region for both source and destination tables
+  --source=source                          (required) Source table name
+  --sourceProfile=sourceProfile            AWS Credentials profile to copy from
+  --sourceRegion=sourceRegion              Region of source table
 ```
 
 _See code: [src/commands/copy.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.0/src/commands/copy.ts)_
