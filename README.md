@@ -2,6 +2,7 @@
 
 CLI tools for dynamodb
 
+[![Build Status](https://travis-ci.org/theBenForce/dynamo-tools.svg?branch=master)](https://travis-ci.org/theBenForce/dynamo-tools)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/dynamo-tools.svg)](https://npmjs.org/package/dynamo-tools)
 [![Downloads/week](https://img.shields.io/npm/dw/dynamo-tools.svg)](https://npmjs.org/package/dynamo-tools)
