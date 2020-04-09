@@ -12,7 +12,9 @@ export default class Copy extends Command {
     batchSize: flags.integer({ description: "The number of items to copy at a time", default: 25 }),
     region: flags.string({ description: "Region for both source and destination tables" }),
     sourceRegion: flags.string({ description: "Region of source table" }),
+    sourceProfile: flags.string({ description: "AWS Credentials profile to copy from" }),
     destinationRegion: flags.string({ description: "Region of destination table" }),
+    destinationProfile: flags.string({ description: "AWS Credentials profile to copy to" }),
     source: flags.string({ description: "Source table name", required: true }),
     destination: flags.string({ description: "Destination table name", required: true }),
   };
@@ -40,10 +42,16 @@ export default class Copy extends Command {
     const sourceDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.sourceRegion,
       apiVersion: DYNAMO_CLIENT_VERSION,
+      credentials: flags.sourceProfile
+        ? new AWS.SharedIniFileCredentials({ profile: flags.sourceProfile })
+        : undefined,
     });
     const destDynamo = new AWS.DynamoDB.DocumentClient({
       region: flags.destinationRegion,
       apiVersion: DYNAMO_CLIENT_VERSION,
+      credentials: flags.destinationProfile
+        ? new AWS.SharedIniFileCredentials({ profile: flags.destinationProfile })
+        : undefined,
     });
 
     const scanArgs = {
