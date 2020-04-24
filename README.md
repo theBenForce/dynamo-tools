@@ -36,6 +36,7 @@ USAGE
 <!-- commands -->
 * [`ddb backup [FILE]`](#ddb-backup-file)
 * [`ddb copy`](#ddb-copy)
+* [`ddb delete [FILE]`](#ddb-delete-file)
 * [`ddb help [COMMAND]`](#ddb-help-command)
 
 ## `ddb backup [FILE]`
@@ -79,6 +80,22 @@ OPTIONS
 ```
 
 _See code: [src/commands/copy.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.0/src/commands/copy.ts)_
+
+## `ddb delete [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ ddb delete [FILE]
+
+OPTIONS
+  -h, --help       show CLI help
+  --region=region  (required) AWS region that the DynamoDB is hosted in
+  --target=target  (required) Name of the DynamoDB table to delete records from
+```
+
+_See code: [src/commands/delete.ts](https://github.com/theBenForce/dynamo-tools/blob/v0.0.0/src/commands/delete.ts)_
 
 ## `ddb help [COMMAND]`
 
